@@ -1,3 +1,4 @@
+
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
@@ -95,16 +96,37 @@ app.use((err, req, res, next) => {
 
 // Connection to MongoDB using Mongoose
 mongoose
-    .connect(process.env.MONGODB_URI, {dbName: "clearr"})
-    .then(() => console.log("Connected to MongoDB"))
-    .catch((err) => console.error("MongoDB connection error:", err));
-
-// Start server
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-  console.log(` Environment: ${process.env.NODE_ENV || 'development'}`);
-  console.log(` Health check: http://localhost:${PORT}/health`);
-  console.log(` API docs: http://localhost:${PORT}/api/v1/health`);
-});
+    .connect(process.env.MONGODB_URI, {
+        dbName: "clearr",
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        serverSelectionTimeoutMS: 5000,
+        socketTimeoutMS: 45000,
+    })
+    .then(() => {
+        console.log("✅ Connected to MongoDB Atlas");
+        
+        // Start server only after successful database connection
+        app.listen(PORT, () => {
+            console.log(`🚀 Server running on port ${PORT}`);
+            console.log(`📊 Environment: ${process.env.NODE_ENV || 'development'}`);
+            console.log(`🔗 Health check: http://localhost:${PORT}/health`);
+            console.log(`🔗 API docs: http://localhost:${PORT}/api/v1/health`);
+        });
+    })
+    .catch((err) => {
+        console.error("❌ MongoDB connection error:", err.message);
+        console.log("🔧 Troubleshooting tips:");
+        console.log("1. Check if your IP is whitelisted in MongoDB Atlas");
+        console.log("2. Verify your connection string is correct");
+        console.log("3. Make sure your MongoDB Atlas cluster is running");
+        console.log("4. Check if your username/password are correct");
+        
+        // Still start the server even if DB fails (for development)
+        app.listen(PORT, () => {
+            console.log(`🚀 Server running on port ${PORT} (without database)`);
+            console.log(`📊 Environment: ${process.env.NODE_ENV || 'development'}`);
+        });
+    });
 
 module.exports = app;

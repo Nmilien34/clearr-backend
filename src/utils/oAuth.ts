@@ -160,5 +160,6 @@ export const blacklistToken = (token: string): void => {
  */
 export const isTokenBlacklisted = (token: string): boolean => {
     // TODO: Check if token exists in Redis or database blacklist
+    console.log(`Checking if token is blacklisted: ${token.substring(0, 20)}...`);
     return false; // Placeholder - implement actual check
 };

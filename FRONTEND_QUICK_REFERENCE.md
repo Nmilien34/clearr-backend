@@ -3,7 +3,7 @@
 ## Base URL
 ```
 http://localhost:3000 (development)
-https://your-render-url.com (production)
+https://clearr-backend.onrender.com (production)
 ```
 
 ## Authentication

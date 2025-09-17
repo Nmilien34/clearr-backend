@@ -1,7 +1,8 @@
 # Clearr Backend API Documentation
 
 ## Base URL
-`http://localhost:3000` (development)
+- **Development:** `http://localhost:3000`
+- **Production:** `https://clearr-backend.onrender.com`
 
 ## Authentication
 All protected endpoints require a JWT token in the Authorization header:

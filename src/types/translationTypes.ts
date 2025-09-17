@@ -1,6 +1,8 @@
+import { Schema } from "mongoose";
+
 export interface ITranslation {
-    _id: any;
-    userId: any; // Reference to user
+    _id: Schema.Types.ObjectId;
+    userId: Schema.Types.ObjectId; // Reference to user
     date: Date;
     mode: 'professional' | 'personal' | 'casual';
     translationInput: string;

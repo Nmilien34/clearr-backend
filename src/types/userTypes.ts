@@ -13,7 +13,7 @@ export interface IUser {
     fullName: string;
     phoneNumber: string; //phone number is very important since there won't be no password and phone auth will be the only way to login
     email?: string; // email is optional since there won't be no password and phone auth will be the only way to login
-    pushToken?: string; // this is the push token that the user has for push notifications
+    pushToken?: string; // Expo push token for notifications (ExponentPushToken[...])
     notificationEnabled: boolean; // this is the notification enabled that the user has for push notifications
     preferredMode: 'professional' | 'personal' | 'casual'; // this is the preferred mode that the user has for translation
     isActive: boolean;

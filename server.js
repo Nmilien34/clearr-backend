@@ -35,7 +35,17 @@ app.get('/health', (req, res) => {
   });
 });
 
+// Import routes
+const authRoutes = require('./dist/Routes/authRoutes.js');
+const userRoutes = require('./dist/Routes/userRoutes.js');
+const translationRoutes = require('./dist/Routes/translationRoutes.js');
+
 // API routes
+app.use('/api', authRoutes.default || authRoutes);
+app.use('/api/users', userRoutes.default || userRoutes);
+app.use('/api/translations', translationRoutes.default || translationRoutes);
+
+// Health check routes
 app.get('/api/v1/health', (req, res) => {
   res.json({
     success: true,
@@ -44,32 +54,10 @@ app.get('/api/v1/health', (req, res) => {
   });
 });
 
-app.get('/api/v1/example', (req, res) => {
+app.get('/health', (req, res) => {
   res.json({
     success: true,
-    message: 'This is an example API endpoint',
-    data: {
-      example: true,
-      timestamp: new Date().toISOString(),
-    },
-  });
-});
-
-// Posts routes
-app.get('/api/posts', (req, res) => {
-  res.json({
-    success: true,
-    message: 'Chill out, it\'s just a test',
-    data: [],
-    timestamp: new Date().toISOString(),
-  });
-});
-
-app.post('/api/posts', (req, res) => {
-  res.json({
-    success: true,
-    message: 'Chill out, it\'s just a test',
-    data: req.body,
+    status: 'healthy',
     timestamp: new Date().toISOString(),
   });
 });

@@ -12,8 +12,7 @@ const translationSchema = new Schema<ITranslation>({
     timestamps: true
 });
 
-const Translation = mongoose.model('Translation', translationSchema);
-
-module.exports = Translation;           
+const Translation = mongoose.model<ITranslation>('Translation', translationSchema);
+    
 
 export default Translation;

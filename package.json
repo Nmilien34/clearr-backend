@@ -4,8 +4,8 @@
   "description": "Backend API for Clearr application",
   "main": "server.js",
   "scripts": {
-    "build": "tsc",
-    "start": "npm run build && node server.js",
+    "build": "node --max-old-space-size=1024 ./node_modules/.bin/tsc",
+    "start": "node server.js",
     "dev": "nodemon server.js",
     "dev:watch": "nodemon server.js",
     "test": "jest",

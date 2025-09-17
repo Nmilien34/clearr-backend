@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "build": "node --max-old-space-size=1024 ./node_modules/.bin/tsc",
+    "postbuild": "ls -la dist/ && echo 'Build completed successfully'",
     "start": "node server.js",
     "dev": "nodemon server.js",
     "dev:watch": "nodemon server.js",
@@ -21,6 +22,11 @@
   ],
   "author": "",
   "license": "ISC",
+  "files": [
+    "dist/**/*",
+    "server.js",
+    "package.json"
+  ],
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",

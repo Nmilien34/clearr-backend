@@ -36,9 +36,17 @@ app.get('/health', (req, res) => {
 });
 
 // Import routes
-const authRoutes = require('./dist/Routes/authRoutes.js');
-const userRoutes = require('./dist/Routes/userRoutes.js');
-const translationRoutes = require('./dist/Routes/translationRoutes.js');
+const path = require('path');
+const fs = require('fs');
+
+// Debug: Check if dist folder exists
+console.log('Current directory:', process.cwd());
+console.log('Dist folder exists:', fs.existsSync(path.join(__dirname, 'dist')));
+console.log('Routes folder exists:', fs.existsSync(path.join(__dirname, 'dist', 'Routes')));
+
+const authRoutes = require(path.join(__dirname, 'dist', 'Routes', 'authRoutes.js'));
+const userRoutes = require(path.join(__dirname, 'dist', 'Routes', 'userRoutes.js'));
+const translationRoutes = require(path.join(__dirname, 'dist', 'Routes', 'translationRoutes.js'));
 
 // API routes
 app.use('/api', authRoutes.default || authRoutes);

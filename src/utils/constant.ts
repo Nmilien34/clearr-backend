@@ -37,13 +37,6 @@ export const TWILIO_CONFIG = {
     MAX_VERIFICATION_ATTEMPTS: 5
 } as const;
 
-/**
- * Database collection names
- */
-export const COLLECTIONS = {
-    USERS: 'users',
-    TRANSLATIONS: 'translations'
-} as const;
 
 /**
  * Environment configurations
